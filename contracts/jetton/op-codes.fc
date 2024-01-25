@@ -1,0 +1,11 @@
+int op::transfer() asm "0xf8a7ea5 PUSHINT";
+int op::transfer_notification() asm "0x7362d09c PUSHINT";
+int op::internal_transfer() asm "0x178d4519 PUSHINT";
+int op::excesses() asm "0xd53276db PUSHINT";
+int op::burn() asm "0x595f07bc PUSHINT";
+int op::burn_notification() asm "0x7bdd97de PUSHINT";
+
+;; Minter
+int op::receiveInit() asm "22 PUSHINT"; ;; 0x16
+int op::mint() asm "21 PUSHINT"; ;; 0x0000015
+int op::redeemMessage() asm "0xe59fbd25 PUSHINT";
