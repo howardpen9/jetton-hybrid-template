@@ -82,6 +82,10 @@ contract Minter {
         return rootInit;
     }
 
+    get fun get_index(): Int {
+        return self.index;
+    }
+
     get fun get_address_by_index(index: Int): Address {
         return self.record.get(index)!!;
     }

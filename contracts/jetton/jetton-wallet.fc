@@ -73,7 +73,6 @@ int gas_consumption() asm "15000000 PUSHINT"; ;; 0.015 TON
   force_chain(to_owner_address);
 
   (int balance, slice owner_address, slice jetton_master_address, cell jetton_wallet_code) = load_data();
-  
   balance -= jetton_amount;
 
   throw_unless(705, equal_slices(owner_address, sender_address));
@@ -87,7 +86,6 @@ int gas_consumption() asm "15000000 PUSHINT"; ;; 0.015 TON
   int forward_ton_amount = in_msg_body~load_coins();
 
   throw_unless(708, slice_bits(in_msg_body) >= 1);
-
   slice either_forward_payload = in_msg_body;
 
   var msg = begin_cell()
@@ -244,7 +242,6 @@ int gas_consumption() asm "15000000 PUSHINT"; ;; 0.015 TON
 
 
 () recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
-
   if (in_msg_body.slice_empty?()) { ;; ignore empty messages
     return ();
   }
@@ -263,8 +260,8 @@ int gas_consumption() asm "15000000 PUSHINT"; ;; 0.015 TON
   cs~load_coins(); ;; skip ihr_fee
 
   int fwd_fee = muldiv(cs~load_coins(), 3, 2); ;; we use message fwd_fee for estimation of forward_payload costs
-
   int op = in_msg_body~load_uint(32);
+
   if (op == op::transfer()) { ;; outgoing transfer
     send_tokens(in_msg_body, sender_address, msg_value, fwd_fee);
     return ();
